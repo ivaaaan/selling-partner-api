@@ -17,6 +17,7 @@
 namespace SellingPartnerApi;
 
 use SellingPartnerApi\Model\ModelInterface;
+use SellingPartnerApi\Model\ResponseInterface;
 
 /**
  * ObjectSerializer Class Doc Comment
@@ -358,6 +359,12 @@ class ObjectSerializer
 
             /** @var ModelInterface $instance */
             $instance = new $class();
+
+            if ($instance instanceof ResponseInterface) {
+                $instance->setRateLimit($httpHeaders['x-amzn-RateLimit-Limit'] ?? null);
+                $instance->setRequestId($httpHeaders['x-amzn-requestId'] ?? null);
+            }
+
             foreach ($instance::openAPITypes() as $property => $type) {
                 $propertySetter = $instance::setters()[$property];
 

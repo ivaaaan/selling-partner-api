@@ -28,6 +28,8 @@
 namespace SellingPartnerApi\Model\VendorOrders;
 
 use \ArrayAccess;
+use SellingPartnerApi\Model\ModelWithHeadersTrait;
+use SellingPartnerApi\Model\ResponseInterface;
 use \SellingPartnerApi\ObjectSerializer;
 use \SellingPartnerApi\Model\ModelInterface;
 
@@ -42,8 +44,10 @@ use \SellingPartnerApi\Model\ModelInterface;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class GetPurchaseOrdersResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetPurchaseOrdersResponse implements ModelInterface, ArrayAccess, \JsonSerializable, ResponseInterface
 {
+    use ModelWithHeadersTrait;
+
     public const DISCRIMINATOR = null;
 
     /**
